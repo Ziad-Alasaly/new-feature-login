@@ -94,8 +94,9 @@
       e.preventDefault();
 
       const data = {
-        username: form.username.value,
-        password: form.password.value
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+
       };
 
       fetch(scriptURL, {
